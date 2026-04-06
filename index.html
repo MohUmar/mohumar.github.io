@@ -915,61 +915,77 @@
 
     </script>
 <script>
-    document.getElementById('auditForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
+    document.addEventListener('DOMContentLoaded', function () {
+        let isSubmitting = false;
 
-        // Basic validation
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const website = document.getElementById('website').value.trim();
-        const terms = document.getElementById('terms').checked;
+        const auditForm = document.getElementById('auditForm');
+        if (!auditForm) return;
 
-        let valid = true;
+        auditForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation(); // blocks ALL other listeners on this element
 
-        document.getElementById('nameError').style.display = name ? 'none' : 'block';
-        if (!name) valid = false;
+            if (isSubmitting) return;
+            isSubmitting = true;
 
-        document.getElementById('emailError').style.display = email ? 'none' : 'block';
-        if (!email) valid = false;
+            const name    = document.getElementById('name').value.trim();
+            const email   = document.getElementById('email').value.trim();
+            const website = document.getElementById('website').value.trim();
+            const terms   = document.getElementById('terms').checked;
 
-        document.getElementById('websiteError').style.display = website ? 'none' : 'block';
-        if (!website) valid = false;
+            let valid = true;
 
-        document.getElementById('termsError').style.display = terms ? 'none' : 'block';
-        if (!terms) valid = false;
+            document.getElementById('nameError').style.display    = name    ? 'none' : 'block';
+            if (!name)    valid = false;
 
-        if (!valid) return;
+            document.getElementById('emailError').style.display   = email   ? 'none' : 'block';
+            if (!email)   valid = false;
 
-        const btn = document.getElementById('submitBtn');
-        btn.disabled = true;
-        btn.value = 'Sending...';
+            document.getElementById('websiteError').style.display = website ? 'none' : 'block';
+            if (!website) valid = false;
 
-        try {
-            const response = await fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this),
-                headers: { 'Accept': 'application/json' }
-            });
+            document.getElementById('termsError').style.display   = terms   ? 'none' : 'block';
+            if (!terms)   valid = false;
 
-            if (response.ok) {
-                // Close current popup and open success popup
-                $.fancybox.close();
-                setTimeout(() => {
-                    $.fancybox.open({ src: '#succsesOrder', type: 'inline' });
-                }, 300);
-                this.reset();
-            } else {
-                alert('Something went wrong. Please try again.');
+            if (!valid) {
+                isSubmitting = false;
+                return;
             }
-        } catch (err) {
-            alert('Network error. Please try again.');
-        }
 
-        btn.disabled = false;
-        btn.textContent = 'Submit';
+            const btn = document.getElementById('submitBtn');
+            btn.disabled    = true;
+            btn.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(auditForm.action, {
+                    method:  'POST',
+                    body:    new FormData(auditForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    auditForm.reset();
+                    if (typeof $.fancybox !== 'undefined') {
+                        $.fancybox.close();
+                        setTimeout(() => {
+                            $.fancybox.open({ src: '#succsesOrder', type: 'inline' });
+                        }, 300);
+                    }
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                alert('Network error. Please try again.');
+            }
+
+            btn.disabled    = false;
+            btn.textContent = 'Submit';
+            isSubmitting    = false;
+        });
     });
-</script>
-    <script>
+</script>    
+
+<script>
   document.getElementById('consultForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
