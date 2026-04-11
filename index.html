@@ -146,15 +146,7 @@
 }
     </script>
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-T3R4HSFRBB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-T3R4HSFRBB');
-</script>
 
     <link rel="stylesheet" type="text/css" href="css/first-screen.css" />
     <!-- <link rel="stylesheet" type="text/css" href="css/first-screen-inner.css" /> -->
@@ -162,69 +154,7 @@
     <link rel="preload " href="fonts/Lato/LatoRegular.woff2" as="font" crossorigin>
     <link rel="preload " href="fonts/Lato/LatoBold.woff2" as="font" crossorigin>
     <link rel="preload" href="css/style.css" as="style">
-
-    <!-- ✅ Mobile hero image fix -->
-    <style>
-        /* Always clip overflow on the hero so nothing bleeds outside */
-        .first-screen.section-screen-main {
-            overflow: hidden;
-            position: relative;
-        }
-
-        @media (max-width: 767px) {
-
-            /* Stack: text on top, rocket image below — mirrors PC side-by-side layout */
-            .first-screen.section-screen-main {
-                min-height: auto;
-                padding-bottom: 0 !important;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .first-screen.section-screen-main .wrapper {
-                position: relative;
-                z-index: 2;
-                width: 100%;
-            }
-
-            /* Full-width text on mobile */
-            .screen-main {
-                max-width: 100% !important;
-                width: 100% !important;
-            }
-
-            /*
-             * Convert the absolutely-positioned background div into a normal
-             * block element that renders BELOW the text at a proper size.
-             * This gives the rocket the same visual weight as on desktop —
-             * just stacked vertically instead of side-by-side.
-             */
-            .section-screen-main__bg {
-                position: relative !important;
-                top: auto !important;
-                left: auto !important;
-                right: auto !important;
-                bottom: auto !important;
-                transform: none !important;
-
-                width: 100% !important;
-                height: 280px !important;
-
-                background-size: contain !important;
-                background-position: center bottom !important;
-                background-repeat: no-repeat !important;
-
-                display: block;
-                margin-top: -20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .section-screen-main__bg {
-                height: 240px !important;
-            }
-        }
-    </style>
+    <script src="https://kit.fontawesome.com/42199b6c41.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="loaded">
@@ -237,9 +167,10 @@
 
                         </div>
                         <div class="phone-item">
-                            <div class="footer-title header-title-phone">Have a question? Contact Us!</div>
+                            <div class="footer-title header-title-phone">Have a question? Contact us!</div>
                             <div class="footer-phone__item">
-                                <i class="icon-mail"></i><a href="mailto:rankvision400@gmail.com">rankvision400@gmail.com</a>
+                                <i class="fa-regular fa-envelope"></i><span></span><a
+                                    href="mailto:rankvision400@gmail.com">rankvision400@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -275,9 +206,10 @@
 
                             </div>
                             <div class="phone-item">
-                                <div class="footer-title footer-title_phone">Have a question? Contact Us!</div>
+                                <div class="footer-title footer-title_phone">Have a question? Call us!</div>
                                 <div class="footer-phone__item">
-                                    <i class="icon-mail"></i><a href="mailto:rankvision400@gmail.com">rankvision400@gmail.com</a>
+                                    <i class="fa-regular fa-envelope"></i><span></span><a
+                                        href="mailto:rankvision400@gmail.com">rankvision400@gmail.com</a>
                                 </div>
                             </div>
                         </div>
@@ -950,9 +882,10 @@
 
             </div>
             <div class="phone-item footer-phone">
-                <div class="footer-title footer-title_phone">Have a question? Contact Us!</div>
+                <div class="footer-title footer-title_phone">Have a question? Call us!</div>
                 <div class="footer-phone__item">
-                    <i class="icon-envelope"></i><a href="mailto:rankvision400@gmail.com">rankvision400@gmail.com</a>
+                    <i class="fa-regular fa-envelope"></i><span></span><a
+                        href="mailto:rankvision400@gmail.com">rankvision400@gmail.com</a>
                 </div>
             </div>
             <a href="#formOrder" class="btn-2 btn_started js-fancybox">get free audit</a>
